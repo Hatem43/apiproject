@@ -43,7 +43,7 @@ public class apitests {
 
 
 
-/*
+
 
     @Test(description = "invalid country and valid postalcode")
     public void testinvalidcountryandvalidpostalcode() {
@@ -72,7 +72,7 @@ public class apitests {
         Assert.assertTrue(resp.getStatusCode()==404 || resp.getStatusCode()==500);
     }
 
- */
+
 
 }
 
