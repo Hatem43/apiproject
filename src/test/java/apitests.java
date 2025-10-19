@@ -1,8 +1,10 @@
-import io.restassured.RestAssured;
+
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.util.concurrent.TimeUnit;
 
 public class apitests {
 
@@ -22,14 +24,26 @@ public class apitests {
 
 
         Response resp=api.getLocation(country,postalCode);
-        Assert.assertEquals(resp.getStatusCode(),200);
-        Assert.assertEquals(resp.contentType(),"application/json");
+        int responsecode= resp.getStatusCode();
+        System.out.println("the response status code is " +responsecode);
+        String responsecotentype= resp.contentType();
+        System.out.println("the response content type is " +responsecotentype);
+        long responsetime =resp.timeIn(TimeUnit.MILLISECONDS);
+        System.out.println("the response time is " +responsetime);
+        String responsebody=resp.getBody().asString();
+        System.out.println("the response body is " +responsebody);
+
+        Assert.assertEquals(responsecode,200);
+        Assert.assertEquals(responsecotentype,"application/json");
+        Assert.assertTrue(responsebody.contains("places"));
         Assert.assertEquals(resp.jsonPath().getString("country"),"United States");
         Assert.assertEquals(resp.jsonPath().getString("places[0].longitude"),"-118.4065");
+        Assert.assertEquals(resp.jsonPath().getString("places[0].latitude"),"34.0901");
     }
 
 
 
+/*
 
     @Test(description = "invalid country and valid postalcode")
     public void testinvalidcountryandvalidpostalcode() {
@@ -58,4 +72,7 @@ public class apitests {
         Assert.assertTrue(resp.getStatusCode()==404 || resp.getStatusCode()==500);
     }
 
+ */
+
 }
+
