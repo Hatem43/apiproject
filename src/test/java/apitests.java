@@ -20,7 +20,7 @@ public class apitests {
     }
 
     @Test(description = "valid country and valid postalcode")
-    public void testcountryandpostalcode() {
+    public void testvalidcountryandvalidpostalcode() {
         String country = "us";
         String postalCode = "90210";
 
@@ -53,38 +53,38 @@ public class apitests {
 
 
 
-/*
     @Test(description = "invalid country and valid postalcode")
     public void testinvalidcountryandvalidpostalcode() {
         String invalidcountry = "sss";
         String validpostalCode = "90210";
 
         Response resp=api.getLocation(invalidcountry,validpostalCode);
-        Assert.assertTrue(resp.getStatusCode()==404 || resp.getStatusCode()==500);
+        int statuscode= resp.statusCode();
+        System.out.println("the response status code is "+statuscode);
+        Assert.assertTrue(statuscode==404 || statuscode==500);
     }
 
-    @Test(description = "valid country invalid postalcode")
+    @Test(description = "valid country and invalid postalcode")
     public void testvalidcountryandinvalidpostalcode() {
         String invalidcountry = "us";
         String validpostalCode = "abcde";
 
         Response resp=api.getLocation(invalidcountry,validpostalCode);
-        Assert.assertTrue(resp.getStatusCode()==404 || resp.getStatusCode()==500);
+        int statuscode= resp.statusCode();
+        System.out.println("the response status code is "+statuscode);
+        Assert.assertTrue(statuscode==404 || statuscode==500);
     }
 
-    @Test(description = "invalid country invalid postalcode")
+    @Test(description = "invalid country and invalid postalcode")
     public void testinvalidcountryandinvalidpostalcode() {
         String invalidcountry = "xxx";
         String validpostalCode = "00000";
 
         Response resp=api.getLocation(invalidcountry,validpostalCode);
-        Assert.assertTrue(resp.getStatusCode()==404 || resp.getStatusCode()==500);
+        int statuscode= resp.statusCode();
+        System.out.println("the response status code is "+statuscode);
+        Assert.assertTrue(statuscode==404 || statuscode==500);
     }
-
- */
-
-
-
 
 }
 
