@@ -27,8 +27,8 @@ public class apitests {
         Response resp=api.getLocation(country,postalCode);
         int responsecode= resp.getStatusCode();
         System.out.println("the response status code is " +responsecode);
-        String responsecotentype= resp.contentType();
-        System.out.println("the response content type is " +responsecotentype);
+        String responsecontentype= resp.contentType();
+        System.out.println("the response content type is " +responsecontentype);
         long responsetime =resp.timeIn(TimeUnit.MILLISECONDS);
         System.out.println("the response time is " +responsetime +" milliseconds");
         String responsebody=resp.getBody().asString();
@@ -40,7 +40,7 @@ public class apitests {
 
 
         Assert.assertEquals(responsecode,200);
-        Assert.assertEquals(responsecotentype,"application/json");
+        Assert.assertEquals(responsecontentype,"application/json");
         Assert.assertEquals(resp.jsonPath().getString("country"),"United States");
         Assert.assertEquals(resp.jsonPath().getString("places[0].longitude"),"-118.4065");
         Assert.assertEquals(resp.jsonPath().getString("places[0].latitude"),"34.0901");
