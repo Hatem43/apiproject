@@ -42,6 +42,7 @@ public class apitests {
         Assert.assertEquals(responsecode,200);
         Assert.assertEquals(responsecontentype,"application/json");
         Assert.assertEquals(resp.jsonPath().getString("country"),"United States");
+        Assert.assertEquals(resp.jsonPath().getString("places[0].state"),"California");
         Assert.assertEquals(resp.jsonPath().getString("places[0].longitude"),"-118.4065");
         Assert.assertEquals(resp.jsonPath().getString("places[0].latitude"),"34.0901");
         Assert.assertEquals(responseheaders.getValue("Connection"),"keep-alive");
