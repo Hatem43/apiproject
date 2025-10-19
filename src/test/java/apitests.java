@@ -29,7 +29,7 @@ public class apitests {
         String responsecotentype= resp.contentType();
         System.out.println("the response content type is " +responsecotentype);
         long responsetime =resp.timeIn(TimeUnit.MILLISECONDS);
-        System.out.println("the response time is " +responsetime);
+        System.out.println("the response time is " +responsetime +" milliseconds");
         String responsebody=resp.getBody().asString();
         System.out.println("the response body is " +responsebody);
 
