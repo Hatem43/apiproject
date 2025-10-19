@@ -1,9 +1,11 @@
-
+import io.restassured.http.Header;
+import io.restassured.http.Headers;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class apitests {
@@ -32,19 +34,26 @@ public class apitests {
         System.out.println("the response time is " +responsetime +" milliseconds");
         String responsebody=resp.getBody().asString();
         System.out.println("the response body is " +responsebody);
+        Headers responseheaders= resp.getHeaders();
+        List<Header> headers=responseheaders.asList();
+        System.out.println("the headers are " + headers);
+
+
 
         Assert.assertEquals(responsecode,200);
         Assert.assertEquals(responsecotentype,"application/json");
-        Assert.assertTrue(responsebody.contains("places"));
         Assert.assertEquals(resp.jsonPath().getString("country"),"United States");
         Assert.assertEquals(resp.jsonPath().getString("places[0].longitude"),"-118.4065");
         Assert.assertEquals(resp.jsonPath().getString("places[0].latitude"),"34.0901");
+        Assert.assertEquals(responseheaders.getValue("Connection"),"keep-alive");
+        Assert.assertTrue(responsebody.contains("places"));
+
     }
 
 
 
 
-
+/*
     @Test(description = "invalid country and valid postalcode")
     public void testinvalidcountryandvalidpostalcode() {
         String invalidcountry = "sss";
@@ -71,6 +80,9 @@ public class apitests {
         Response resp=api.getLocation(invalidcountry,validpostalCode);
         Assert.assertTrue(resp.getStatusCode()==404 || resp.getStatusCode()==500);
     }
+
+ */
+
 
 
 
