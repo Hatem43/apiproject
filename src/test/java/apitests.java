@@ -66,10 +66,10 @@ public class apitests {
 
     @Test(description = "valid country and invalid postalcode")
     public void testvalidcountryandinvalidpostalcode() {
-        String invalidcountry = "us";
-        String validpostalCode = "abcde";
+        String validcountry = "us";
+        String invalidpostalCode = "abcde";
 
-        Response resp=api.getLocation(invalidcountry,validpostalCode);
+        Response resp=api.getLocation(validcountry,invalidpostalCode);
         int statuscode= resp.statusCode();
         System.out.println("the response status code is "+statuscode);
         Assert.assertTrue(statuscode==404 || statuscode==500);
@@ -78,9 +78,9 @@ public class apitests {
     @Test(description = "invalid country and invalid postalcode")
     public void testinvalidcountryandinvalidpostalcode() {
         String invalidcountry = "xxx";
-        String validpostalCode = "00000";
+        String invalidpostalCode = "00000";
 
-        Response resp=api.getLocation(invalidcountry,validpostalCode);
+        Response resp=api.getLocation(invalidcountry,invalidpostalCode);
         int statuscode= resp.statusCode();
         System.out.println("the response status code is "+statuscode);
         Assert.assertTrue(statuscode==404 || statuscode==500);
